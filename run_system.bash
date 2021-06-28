@@ -30,4 +30,4 @@ docker run --rm -d --name="rpi_controller" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    deep_learning_kit
+    rpi_kit
