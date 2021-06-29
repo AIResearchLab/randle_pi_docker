@@ -18,8 +18,6 @@ else
   SYS_IP_ADDR="${YOUR_IP}"
 fi
 
-xhost +local:docker
-
 docker run --rm -d --name="rpi_controller" \
     --network=host \
     --add-host=011502P0001.local:10.0.0.10 \
@@ -30,4 +28,4 @@ docker run --rm -d --name="rpi_controller" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
-    rpi_kit
+    rpi_conf

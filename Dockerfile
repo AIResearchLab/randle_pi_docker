@@ -6,7 +6,11 @@ RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 RUN sudo apt-get update
 RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git xterm x11-xserver-utils \
 #Debugging
-vim nano iproute2 net-tools inetutils-ping tree software-properties-common
+vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
+#ROS
+ros-kinetic-cv-bridge ros-kinetic-dynamic-reconfigure ros-kinetic-control-msgs ros-kinetic-actionlib ros-kinetic-ros-control
+
+RUN sudo apt-get -y install python-wstool
 
 #Installing baxter_sdk
 RUN mkdir -p /home/baxter/catkin_ws/src
@@ -24,7 +28,4 @@ RUN mv *.sh ../..
 # change font size for xterm to 18
 RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
 WORKDIR /home/baxter/catkin_ws/src
-RUN sed -i -e '16 s/value="0.1"/value="0.0"/g' /home/baxter/catkin_ws/src/moveit_robots/baxter/baxter_moveit_config/launch/trajectory_execution.launch
 WORKDIR /home/baxter/catkin_ws
-# it is neccesary to run 
-RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
