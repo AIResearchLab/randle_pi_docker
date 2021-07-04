@@ -13,19 +13,14 @@ then
 fi
 
 if [[ -z "${YOUR_IP}" ]]; then
-  SYS_IP_ADDR=10.0.0.161
+  export SYS_IP_ADDR=10.0.0.171
 else
-  SYS_IP_ADDR="${YOUR_IP}"
+  export SYS_IP_ADDR="${YOUR_IP}"
 fi
 
-docker run --rm -d --name="rpi_controller" \
+docker run -t -d --name="rpi_controller" \
     --network=host \
     --add-host=011502P0001.local:10.0.0.10 \
     --device=/dev/dri:/dev/dri \
     --privileged -v /dev/bus/usb:/dev/bus/usb -e YOUR_IP=SYS_IP_ADDR \
-    --env="DISPLAY=$DISPLAY" \
-    --env="QT_X11_NO_MITSHM=1" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --env="XAUTHORITY=$XAUTH" \
-    --volume="$XAUTH:$XAUTH" \
     rpi_conf
