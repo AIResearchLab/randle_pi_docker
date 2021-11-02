@@ -1,9 +1,32 @@
 FROM ros:kinetic-ros-core-xenial@sha256:38fbb5c633fb11dbfccc6269bacceac38ced36de1b29930d8c52dea53c5bfd72
+
+ARG ssh_prv_key
+ARG ssh_pub_key
+
 SHELL ["/bin/bash", "-c"]
 # automatically sources the default ros on docker run
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 # Package for installing Baxter
 RUN sudo apt-get update
+
+#This section also moves your host private key for ssh repositories
+RUN apt update && \
+    apt install -y \
+        git \
+        openssh-server \
+        libmysqlclient-dev
+
+# Authorize SSH Host
+RUN mkdir -p /root/.ssh && \
+    chmod 0700 /root/.ssh && \
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+
+# Add the keys and set permissions
+RUN echo "$ssh_prv_key" > ~/.ssh/id_ed25519 && \
+    echo "$ssh_pub_key" > ~/.ssh/id_ed25519.pub && \
+    chmod 600 ~/.ssh/id_ed25519 && \
+    chmod 600 ~/.ssh/id_ed25519.pub
+
 RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git xterm x11-xserver-utils \
 #Debugging
 vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
@@ -15,6 +38,9 @@ RUN sudo apt-get -y install python-wstool
 #Installing baxter_sdk
 RUN mkdir -p /home/baxter/catkin_ws/src
 WORKDIR /home/baxter/catkin_ws/src
+RUN git clone git@github.com:AIResearchLab/randle_serial.git && \
+git clone git@github.com:AIResearchLab/randle_core.git && \
+git clone https://github.com/wjwwood/serial
 #Baxter firware needs release 1.1.1
 RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
 WORKDIR /home/baxter/catkin_ws/src/baxter
@@ -29,3 +55,4 @@ RUN mv *.sh ../..
 RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
 WORKDIR /home/baxter/catkin_ws/src
 WORKDIR /home/baxter/catkin_ws
+RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make'
