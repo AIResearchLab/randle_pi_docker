@@ -27,6 +27,9 @@ RUN echo "$ssh_prv_key" > ~/.ssh/id_ed25519 && \
     chmod 600 ~/.ssh/id_ed25519 && \
     chmod 600 ~/.ssh/id_ed25519.pub
 
+#copy the profile configuration to the host system
+COPY .profile /root/.profile
+
 RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git xterm x11-xserver-utils \
 #Debugging
 vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
