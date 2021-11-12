@@ -17,5 +17,6 @@ export ROS_VERSION=1
 export ROSLISP_PACKAGE_DIRECTORIES=/home/baxter/catkin_ws/devel/share/common-lisp
 export __ROS_PROMPT=1
 export ROS_DISTRO=kinetic
-export ROS_IP=$SYSTEM_IP
+#Todo, make this some kind of environmental variable, not sure how to do yet, will figure out
+export ROS_IP=10.0.0.171
 export ROS_ETC_DIR=/opt/ros/kinetic/etc/ros
