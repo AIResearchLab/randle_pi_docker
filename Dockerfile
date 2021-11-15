@@ -41,9 +41,10 @@ RUN sudo apt-get -y install python-wstool
 
 #Installing baxter_sdk
 RUN mkdir -p /home/baxter/catkin_ws/src
-WORKDIR /home/baxter/catkin_ws/src
 #Baxter firware needs release 1.1.1
-RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
+#These next two lines are for baxter related libraries, think they're irrelevant
+#WORKDIR /home/baxter/catkin_ws/src
+#RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
 WORKDIR /home/baxter/catkin_ws/src/baxter
 # removing baxter entry in rosinstall file to avoid duplicate baxter_sdk folders
 RUN sed -i '1,4d' baxter_sdk.rosinstall
