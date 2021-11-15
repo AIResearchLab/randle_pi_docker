@@ -44,17 +44,17 @@ RUN mkdir -p /home/baxter/catkin_ws/src
 #Baxter firware needs release 1.1.1
 
 #These next two lines are for baxter related libraries, think they're irrelevant
-WORKDIR /home/baxter/catkin_ws/src
-RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
+#WORKDIR /home/baxter/catkin_ws/src
+#RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
 
 # removing baxter entry in rosinstall file to avoid duplicate baxter_sdk folders
-WORKDIR /home/baxter/catkin_ws/src/baxter
-RUN sed -i '1,4d' baxter_sdk.rosinstall
-RUN wstool init . baxter_sdk.rosinstall 
-RUN wstool update
+#WORKDIR /home/baxter/catkin_ws/src/baxter
+#RUN sed -i '1,4d' baxter_sdk.rosinstall
+#RUN wstool init . baxter_sdk.rosinstall 
+#RUN wstool update
 # replacing the default hostname with the hostname of the UC Baxter and changingthe distro to kinetic
-RUN sed -i -e '22 s/baxter_hostname.local/011502P0001.local/g' -e '26 s/192.168.XXX.XXX/172.17.0.2/g'  -e '30 s/"indigo"/"kinetic"/g' baxter.sh
-RUN mv *.sh ../..
+#RUN sed -i -e '22 s/baxter_hostname.local/011502P0001.local/g' -e '26 s/192.168.XXX.XXX/172.17.0.2/g'  -e '30 s/"indigo"/"kinetic"/g' baxter.sh
+#RUN mv *.sh ../..
 # change font size for xterm to 18
 RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
 WORKDIR /home/baxter/catkin_ws/src
