@@ -1,8 +1,8 @@
 #FROM ros:kinetic-ros-core-xenial@sha256:38fbb5c633fb11dbfccc6269bacceac38ced36de1b29930d8c52dea53c5bfd72
 #FROM ros:kinetic-ros-core-xenial@sha256:bdb0d5f7a8cc3f25d7520cd12ffb30f67e7ce4adfd35dde79b134fbeeb5f2da4
 #FROM ros:kinetic-ros-core-xenial@sha256:518144280d667d4d39a1faeb6f12c17660a8512481d465284abf35d0534ddfe3
-FROM osrf/ros:kinetic-desktop-full
-#FROM arm64v8/ros:kinetic-perception-xenial
+#FROM osrf/ros:kinetic-desktop-full
+FROM arm64v8/ros:kinetic-perception-xenial
 #FROM osrf/ros:kinetic-desktop-xenial
 ARG ssh_prv_key
 ARG ssh_pub_key
@@ -37,7 +37,7 @@ RUN   echo "source /home/baxter/catkin_ws/devel/setup.bash" >> /root/.bashrc
 
 RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git \
 #Debugging
-vim nano iproute2 net-tools inetutils-ping tree software-properties-common
+vim nano iproute2 net-tools inetutils-ping tree software-properties-common qemu
 #ROS
 RUN sudo apt-get install --allow-unauthenticated -y ros-kinetic-xacro ros-kinetic-urdf
 #ros-kinetic-cv-bridge ros-kinetic-dynamic-reconfigure ros-kinetic-control-msgs ros-kinetic-actionlib ros-kinetic-ros-control
@@ -65,4 +65,4 @@ RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
 WORKDIR /home/baxter/catkin_ws/src
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws/src; git clone git@github.com:AIResearchLab/randle_serial.git && git clone git@github.com:AIResearchLab/randle_core.git && git clone https://github.com/wjwwood/serial' 
 WORKDIR /home/baxter/catkin_ws
-RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial buttonsensor_ros_v1 randle_msgs serial'
+#RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial buttonsensor_ros_v1 randle_msgs serial'
