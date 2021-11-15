@@ -2,7 +2,8 @@
 #FROM ros:kinetic-ros-core-xenial@sha256:bdb0d5f7a8cc3f25d7520cd12ffb30f67e7ce4adfd35dde79b134fbeeb5f2da4
 #FROM ros:kinetic-ros-core-xenial@sha256:518144280d667d4d39a1faeb6f12c17660a8512481d465284abf35d0534ddfe3
 #FROM osrf/ros:kinetic-desktop-full
-FROM osrf/ros:kinetic-desktop-xenial
+#FROM osrf/ros:kinetic-desktop-xenial
+FROM arm64v8/ros:kinetic-perception-xenial
 ARG ssh_prv_key
 ARG ssh_pub_key
 
