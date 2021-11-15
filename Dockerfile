@@ -35,7 +35,7 @@ RUN echo "$ssh_prv_key" > ~/.ssh/id_ed25519 && \
 COPY .profile /root/.profile
 RUN   echo "source /home/baxter/catkin_ws/devel/setup.bash" >> /root/.bashrc
 
-RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git\
+RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git \
 #Debugging
 vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
 #ROS
