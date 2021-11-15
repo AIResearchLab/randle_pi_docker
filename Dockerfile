@@ -34,11 +34,12 @@ RUN echo "$ssh_prv_key" > ~/.ssh/id_ed25519 && \
 COPY .profile /root/.profile
 RUN   echo "source /home/baxter/catkin_ws/devel/setup.bash" >> /root/.bashrc
 
-RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git xterm x11-xserver-utils \
+RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git\
 #Debugging
 vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
 #ROS
-ros-kinetic-cv-bridge ros-kinetic-xacro ros-kinetic-dynamic-reconfigure ros-kinetic-control-msgs ros-kinetic-actionlib ros-kinetic-ros-control
+ros-kinetic-xacro 
+#ros-kinetic-cv-bridge ros-kinetic-dynamic-reconfigure ros-kinetic-control-msgs ros-kinetic-actionlib ros-kinetic-ros-control
 
 RUN sudo apt-get -y install python-wstool
 
