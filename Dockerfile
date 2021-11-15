@@ -37,9 +37,9 @@ RUN   echo "source /home/baxter/catkin_ws/devel/setup.bash" >> /root/.bashrc
 
 RUN sudo apt-get install --allow-unauthenticated -y build-essential wget git \
 #Debugging
-vim nano iproute2 net-tools inetutils-ping tree software-properties-common \
+vim nano iproute2 net-tools inetutils-ping tree software-properties-common
 #ROS
-ros-kinetic-xacro ros-kinetic-urdf
+RUN sudo apt-get install --allow-unauthenticated -y ros-kinetic-xacro ros-kinetic-urdf
 #ros-kinetic-cv-bridge ros-kinetic-dynamic-reconfigure ros-kinetic-control-msgs ros-kinetic-actionlib ros-kinetic-ros-control
 
 RUN sudo apt-get -y install python-wstool
