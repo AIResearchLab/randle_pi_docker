@@ -1,5 +1,5 @@
-FROM ros:kinetic-ros-core-xenial@sha256:38fbb5c633fb11dbfccc6269bacceac38ced36de1b29930d8c52dea53c5bfd72
-
+#FROM ros:kinetic-ros-core-xenial@sha256:38fbb5c633fb11dbfccc6269bacceac38ced36de1b29930d8c52dea53c5bfd72
+FROM ros:kinetic-ros-core-xenial@sha256:bdb0d5f7a8cc3f25d7520cd12ffb30f67e7ce4adfd35dde79b134fbeeb5f2da4
 ARG ssh_prv_key
 ARG ssh_pub_key
 
