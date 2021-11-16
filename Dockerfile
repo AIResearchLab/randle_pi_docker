@@ -63,6 +63,8 @@ RUN mkdir -p /home/baxter/catkin_ws/src
 #RUN mv *.sh ../..
 # change font size for xterm to 18
 RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
+#Step to reset the refresh command on build
+RUN pwd
 WORKDIR /home/baxter/catkin_ws/src
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws/src; git clone git@github.com:AIResearchLab/randle_serial.git && git clone git@github.com:AIResearchLab/randle_core.git && git clone https://github.com/wjwwood/serial' 
 WORKDIR /home/baxter/catkin_ws
