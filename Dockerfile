@@ -65,6 +65,8 @@ RUN mkdir -p /home/baxter/catkin_ws/src
 RUN echo  "xterm*font:     *-fixed-*-*-*-18-*" > ~/.Xresources
 #Step to reset the refresh command on build
 RUN pwd
+#This step is for rebuilding the container a bit better, idk it's being dumb
+ARG REBUILD_EXE=unknown
 WORKDIR /home/baxter/catkin_ws/src
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws/src; git clone git@github.com:AIResearchLab/randle_serial.git && git clone git@github.com:AIResearchLab/randle_core.git && git clone https://github.com/wjwwood/serial' 
 WORKDIR /home/baxter/catkin_ws/src/randle_core/buttonsensor_ros_v1
