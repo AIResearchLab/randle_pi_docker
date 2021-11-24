@@ -72,4 +72,4 @@ RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws/src; 
 WORKDIR /home/baxter/catkin_ws/src/randle_core/buttonsensor_ros_v1
 RUN   sed -i "s|libPTSDK.a|libPTSDK_aarch64.a|g" CMakeLists.txt
 WORKDIR /home/baxter/catkin_ws
-RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial randle_msgs serial'
+RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial randle_msgs serial buttonsensor_ros_v1'
