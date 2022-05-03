@@ -71,5 +71,7 @@ WORKDIR /home/baxter/catkin_ws/src
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws/src; git clone git@github.com:AIResearchLab/randle_serial.git && git clone git@github.com:AIResearchLab/randle_core.git && git clone https://github.com/wjwwood/serial' 
 WORKDIR /home/baxter/catkin_ws/src/randle_core/buttonsensor_ros_v1
 RUN   sed -i "s|libPTSDK.a|libPTSDK_aarch64.a|g" CMakeLists.txt
+WORKDIR /home/baxter/catkin_ws/src/randle_core
+RUN rm -rf randle-envs randle_description randle_execs randle_learner randle_pybullet randle_visualiser torqueometer_pybullet_description
 WORKDIR /home/baxter/catkin_ws
-RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial randle_msgs serial buttonsensor_ros_v1'
+RUN /bin/bash -c 'source ~/.profile;. /opt/ros/kinetic/setup.bash; cd /home/baxter/catkin_ws; catkin_make --pkg randle_serial randle_msgs serial buttonsensor_ros_v1'
